@@ -60,8 +60,7 @@ namespace ItemBanOnJoin
 				for (int i = 0; i < inventory.Length; i++)
 				{
 					Item item = inventory[i];
-					if (item.active && TShock.Itembans.ItemIsBanned(item.name) &&
-					    !tSPlayer.Group.HasPermission("itembanonjoin.bypassitembans"))
+					if (item.active && TShock.Itembans.ItemIsBanned(item.name))
 					{
 						bannedItems.Add(item);
 					}
@@ -74,8 +73,7 @@ namespace ItemBanOnJoin
 				for (int i = 0; i < armor.Length; i++)
 				{
 					Item item = armor[i];
-					if (item.active && TShock.Itembans.ItemIsBanned(item.name) &&
-					    !tSPlayer.Group.HasPermission("itembanonjoin.bypassarmorbans"))
+					if (item.active && TShock.Itembans.ItemIsBanned(item.name))
 					{
 						bannedItems.Add(item);
 					}
