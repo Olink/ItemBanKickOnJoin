@@ -63,6 +63,26 @@ namespace ItemBanOnJoin
 				}
 			}
 
+			Item[] armor = tSPlayer.TPlayer.armor;
+			for (int i = 0; i < armor.Length; i++)
+			{
+				Item item = armor[i];
+				if (item.active && TShock.Itembans.ItemIsBanned(item.name) && !tSPlayer.Group.HasPermission("itembanonjoin.bypassitembans"))
+				{
+					bannedItems.Add(item);
+				}
+			}
+
+			Item[] dye = tSPlayer.TPlayer.dye;
+			for (int i = 0; i < dye.Length; i++)
+			{
+				Item item = dye[i];
+				if (item.active && TShock.Itembans.ItemIsBanned(item.name) && !tSPlayer.Group.HasPermission("itembanonjoin.bypassitembans"))
+				{
+					bannedItems.Add(item);
+				}
+			}
+
 			if (bannedItems.Count > 0)
 			{
 				TShock.Utils.ForceKick(tSPlayer, string.Format("{0} {1} banned.  Please remove {2} before joining.", string.Join(",", bannedItems.Select(i => i.name)), bannedItems.Count > 1 ? "are" : "is", bannedItems.Count > 1 ? "them" : "it"), true, false);
