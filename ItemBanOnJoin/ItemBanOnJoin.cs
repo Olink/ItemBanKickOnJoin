@@ -54,32 +54,44 @@ namespace ItemBanOnJoin
 			TSPlayer tSPlayer = TShock.Players[args.Who];
 			Item[] inventory = tSPlayer.TPlayer.inventory;
 			List<Item> bannedItems = new List<Item>();
-			for (int i = 0; i < inventory.Length; i++)
+
+			if (!tSPlayer.Group.HasPermission("itembanonjoin.bypassitembans"))
 			{
-				Item item = inventory[i];
-				if (item.active && TShock.Itembans.ItemIsBanned(item.name) && !tSPlayer.Group.HasPermission("itembanonjoin.bypassitembans"))
+				for (int i = 0; i < inventory.Length; i++)
 				{
-					bannedItems.Add(item);
+					Item item = inventory[i];
+					if (item.active && TShock.Itembans.ItemIsBanned(item.name) &&
+					    !tSPlayer.Group.HasPermission("itembanonjoin.bypassitembans"))
+					{
+						bannedItems.Add(item);
+					}
 				}
 			}
 
-			Item[] armor = tSPlayer.TPlayer.armor;
-			for (int i = 0; i < armor.Length; i++)
+			if (!tSPlayer.Group.HasPermission("itembanonjoin.bypassarmorbans"))
 			{
-				Item item = armor[i];
-				if (item.active && TShock.Itembans.ItemIsBanned(item.name) && !tSPlayer.Group.HasPermission("itembanonjoin.bypassitembans"))
+				Item[] armor = tSPlayer.TPlayer.armor;
+				for (int i = 0; i < armor.Length; i++)
 				{
-					bannedItems.Add(item);
+					Item item = armor[i];
+					if (item.active && TShock.Itembans.ItemIsBanned(item.name) &&
+					    !tSPlayer.Group.HasPermission("itembanonjoin.bypassarmorbans"))
+					{
+						bannedItems.Add(item);
+					}
 				}
 			}
 
 			Item[] dye = tSPlayer.TPlayer.dye;
-			for (int i = 0; i < dye.Length; i++)
+			if (!tSPlayer.Group.HasPermission("itembanonjoin.bypassdyebans"))
 			{
-				Item item = dye[i];
-				if (item.active && TShock.Itembans.ItemIsBanned(item.name) && !tSPlayer.Group.HasPermission("itembanonjoin.bypassitembans"))
+				for (int i = 0; i < dye.Length; i++)
 				{
-					bannedItems.Add(item);
+					Item item = dye[i];
+					if (item.active && TShock.Itembans.ItemIsBanned(item.name))
+					{
+						bannedItems.Add(item);
+					}
 				}
 			}
 
