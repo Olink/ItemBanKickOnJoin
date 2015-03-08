@@ -8,7 +8,7 @@ using TShockAPI;
 
 namespace ItemBanOnJoin
 {
-	[ApiVersion(1,16)]
+	[ApiVersion(1,17)]
 	public class ItemBanOnJoin : TerrariaPlugin
 	{
 		public override string Author
